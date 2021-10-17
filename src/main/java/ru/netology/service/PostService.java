@@ -25,7 +25,11 @@ public class PostService {
     }
 
     public Post save(Post post) {
-        return repository.save(post);
+        Post p = repository.save(post);
+        if (p == null) {
+            throw new NotFoundException();
+        }
+        return p;
     }
 
     public void removeById(long id) {
